@@ -1,0 +1,11 @@
+package portoBackEnd;
+
+import java.util.ArrayList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class Patio {
+	private Stack<Container> containers;
+	private Queue<Caminhao> caminhoes;
+	private Queue<Navio> navios;
+}

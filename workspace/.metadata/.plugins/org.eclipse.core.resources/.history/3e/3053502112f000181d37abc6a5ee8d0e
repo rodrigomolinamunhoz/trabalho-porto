@@ -1,0 +1,10 @@
+package portoBackEnd;
+
+import java.util.Date;
+
+public class Container {
+	private Date dataEntrada;
+	private Remetente remetente;
+	private 
+	
+}

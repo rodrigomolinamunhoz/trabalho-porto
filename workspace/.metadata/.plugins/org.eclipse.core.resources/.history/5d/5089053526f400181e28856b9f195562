@@ -1,0 +1,17 @@
+package portoBackEnd;
+
+public class Destinatario {
+	private OrigemRemetente origemRemetente;
+	private String placa;
+	private int matricula;
+	
+	public Destinatario(String placa) {
+		this.origemRemetente = OrigemRemetente.Navio;
+		this.placa = placa;
+	}
+
+	public Destinatario(int matricula) {
+		this.origemRemetente = OrigemRemetente.Caminhao;
+		this.matricula = matricula;
+	}	
+}

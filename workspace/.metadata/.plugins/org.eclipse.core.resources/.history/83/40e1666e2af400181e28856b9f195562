@@ -1,0 +1,38 @@
+package portoInterface;
+
+import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+public class PainelCadastroNavio extends JPanel {
+	private JTextField textMatricula;
+
+	/**
+	 * Create the panel.
+	 */
+	public PainelCadastroNavio() {
+		setBackground(Color.YELLOW);
+		setLayout(null);
+		
+		JLabel lblCadastroDeNavios = new JLabel("Cadastro de Navios");
+		lblCadastroDeNavios.setBounds(10, 33, 136, 14);
+		add(lblCadastroDeNavios);
+		
+		JLabel lblMatrcula = new JLabel("Matr\u00EDcula:");
+		lblMatrcula.setBounds(10, 70, 49, 14);
+		add(lblMatrcula);
+		
+		textMatricula = new JTextField();
+		textMatricula.setBounds(66, 67, 96, 20);
+		add(textMatricula);
+		textMatricula.setColumns(10);
+		
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setBounds(176, 66, 89, 23);
+		add(btnSalvar);
+
+	}
+
+}

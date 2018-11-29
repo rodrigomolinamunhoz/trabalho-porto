@@ -1,0 +1,36 @@
+package portoBackEnd;
+
+import java.util.ArrayList;
+
+public class Porto {
+	private ArrayList<Navio> navios;
+	private ArrayList<Caminhao> caminhoes;
+	private Patio patio;
+	
+	public Porto() {
+	}
+
+	public ArrayList<Navio> getNavios() {
+		return navios;
+	}
+
+	public void setNavios(ArrayList<Navio> navios) {
+		this.navios = navios;
+	}
+
+	public ArrayList<Caminhao> getCaminhoes() {
+		return caminhoes;
+	}
+
+	public void setCaminhoes(ArrayList<Caminhao> caminhoes) {
+		this.caminhoes = caminhoes;
+	}
+
+	public Patio getPatio() {
+		return patio;
+	}
+
+	public void setPatio(Patio patio) {
+		this.patio = patio;
+	}
+}

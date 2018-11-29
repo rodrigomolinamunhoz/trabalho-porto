@@ -1,0 +1,14 @@
+package portoInterface;
+
+import javax.swing.JPanel;
+
+public class PainelCadastroCaminhao extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public PainelCadastroCaminhao() {
+
+	}
+
+}

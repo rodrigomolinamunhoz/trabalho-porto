@@ -1,0 +1,90 @@
+package portoInterface;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.CardLayout;
+import java.awt.BorderLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.Color;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.BoxLayout;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import javax.swing.JPanel;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+
+public class PainelPorto {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PainelPorto window = new PainelPorto();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public PainelPorto() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setLayout(new CardLayout(0, 0));
+		
+		JPanel panelMenu = new JPanel();
+		frame.getContentPane().add(panelMenu, "name_1202237123459902");
+		panelMenu.setLayout(null);
+		
+		JMenuBar menuCadastro = new JMenuBar();
+		menuCadastro.setToolTipText("");
+		menuCadastro.setBounds(0, 0, 59, 22);
+		panelMenu.add(menuCadastro);
+		
+		JMenu mnCadastro = new JMenu("Cadastro");
+		menuCadastro.add(mnCadastro);
+		
+		JMenuItem mntmCaminho = new JMenuItem("Caminh\u00E3o");
+		mnCadastro.add(mntmCaminho);
+		
+		JMenuItem mntmNavio = new JMenuItem("Navio");
+		mnCadastro.add(mntmNavio);
+		
+		JMenuBar menuBarPatio = new JMenuBar();
+		menuBarPatio.setBounds(58, 0, 99, 22);
+		panelMenu.add(menuBarPatio);
+		
+		JMenu mnPatio = new JMenu("Patio");
+		menuBarPatio.add(mnPatio);
+		
+		JPanel panelCadastroCaminhao = new JPanel();
+		panelCadastroCaminhao.setBounds(0, 0, 588, 382);
+		panelMenu.add(panelCadastroCaminhao);
+		panelCadastroCaminhao.setLayout(null);
+		
+		JPanel panelCadastroNavio = new JPanel();
+		panelCadastroNavio.setBounds(0, 0, 588, 382);
+		panelMenu.add(panelCadastroNavio);
+		panelCadastroNavio.setLayout(null);
+	}
+}

@@ -1,0 +1,68 @@
+package portoInterface;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.CardLayout;
+import java.awt.BorderLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.Color;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.BoxLayout;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import javax.swing.JPanel;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
+
+public class PainelPorto {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PainelPorto window = new PainelPorto();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public PainelPorto() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setLayout(new CardLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, "name_1202237123459902");
+		panel.setLayout(null);
+		
+		JMenu mnCadastro = new JMenu("Cadastro");
+		mnCadastro.setBounds(0, 0, 113, 27);
+		panel.add(mnCadastro);
+		
+		JMenuItem mntmCaminho = new JMenuItem("Caminh\u00E3o");
+		mnCadastro.add(mntmCaminho);
+		
+		JMenuItem mntmNavio = new JMenuItem("Navio");
+		mnCadastro.add(mntmNavio);
+	}
+}

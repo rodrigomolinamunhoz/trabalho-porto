@@ -1,0 +1,37 @@
+package portoInterface;
+
+import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+public class PainelCadastroCaminhao extends JPanel {
+	private JTextField textPlaca;
+
+	/**
+	 * Create the panel.
+	 */
+	public PainelCadastroCaminhao() {
+		setBackground(Color.RED);
+		setLayout(null);
+		
+		JLabel lblCadastroDeCaminho = new JLabel("Cadastro de Caminh\u00E3o");
+		lblCadastroDeCaminho.setBounds(10, 34, 162, 14);
+		add(lblCadastroDeCaminho);
+		
+		JLabel lblPlaca = new JLabel("Placa:");
+		lblPlaca.setBounds(20, 59, 49, 14);
+		add(lblPlaca);
+		
+		textPlaca = new JTextField();
+		textPlaca.setBounds(58, 56, 96, 20);
+		add(textPlaca);
+		textPlaca.setColumns(10);
+		
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setBounds(164, 55, 89, 23);
+		add(btnSalvar);
+
+	}
+}
