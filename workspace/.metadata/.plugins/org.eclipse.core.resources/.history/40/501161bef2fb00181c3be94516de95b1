@@ -1,0 +1,43 @@
+package portoInterface;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.CardLayout;
+
+public class PortoFrameDois extends JFrame {
+
+	private JPanel principal;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PortoFrameDois frame = new PortoFrameDois();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public PortoFrameDois() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		principal = new JPanel();
+		principal.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(principal);
+		principal.setLayout(new CardLayout(0, 0));
+	}
+
+}

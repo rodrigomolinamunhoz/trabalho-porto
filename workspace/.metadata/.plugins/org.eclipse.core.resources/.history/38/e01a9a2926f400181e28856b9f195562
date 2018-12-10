@@ -1,7 +1,0 @@
-package portoBackEnd;
-
-public class Destinatario {
-	private OrigemRemetente origemRemetente;
-	private String placa;
-	private int matricula;
-}

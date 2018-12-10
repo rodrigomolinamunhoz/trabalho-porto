@@ -1,0 +1,158 @@
+package portoInterface;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.CardLayout;
+import java.awt.BorderLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.Color;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.BoxLayout;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import javax.swing.JPanel;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JScrollBar;
+import javax.swing.JTable;
+
+public class PainelPorto {
+
+	private JFrame frame;
+	private JPanel painelInicio;
+	private JPanel painelCadastroCaminhao;
+	private JPanel painelCadastroNavio;
+	private JPanel painelPatio;
+	private JPanel getPainelInicio() {
+		return painelInicio;
+	}
+	
+	public JPanel getPainelCadastroCaminhao() {
+		return painelCadastroCaminhao;
+	}
+	
+	public JPanel getPainelCadastroNavio() {
+		return painelCadastroNavio;
+	}
+	
+	public JPanel getPainelPatio() {
+		return painelPatio;
+	}
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PainelPorto window = new PainelPorto();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public PainelPorto() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		
+		JPanel painelPorto = new JPanel();
+		frame.getContentPane().add(painelPorto);
+		painelPorto.setLayout(new CardLayout(0, 0));
+		
+		painelInicio = new PainelInicio();
+		painelPorto.add(painelInicio, "name_156304225049472");
+		
+		painelCadastroCaminhao = new PainelCadastroCaminhao();
+		painelPorto.add(painelCadastroCaminhao, "name_156701038958973");
+		painelCadastroCaminhao.setLayout(null);
+		
+		painelCadastroNavio = new PainelCadastroNavio();
+		painelPorto.add(painelCadastroNavio, "name_156822636675350");
+		
+		painelPatio = new PainelPatio(frame);
+		painelPorto.add(painelPatio, "name_163498134734542");
+		//painelPatio.setLayout(null);		
+	    painelPatio.setSize(frame.getHeight(), frame.getWidth());
+
+		
+		JMenuBar menuBar = new JMenuBar();
+		frame.getContentPane().add(menuBar, BorderLayout.NORTH);
+		
+		JMenu mnIncio = new JMenu("In\u00EDcio");
+		menuBar.add(mnIncio);
+		
+		JMenuItem mntmIr = new JMenuItem("Ver");
+		mntmIr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				painelCadastroCaminhao.setVisible(false);
+				painelCadastroNavio.setVisible(false);
+				painelInicio.setVisible(true);
+				painelPatio.setVisible(false);
+			}
+		});
+		mnIncio.add(mntmIr);
+		
+		JMenu mnCadastro = new JMenu("Cadastro");
+		menuBar.add(mnCadastro);
+		
+		JMenuItem mntmCadastrar = new JMenuItem("Cadastrar Caminh\u00E3o");
+		mntmCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				painelCadastroCaminhao.setVisible(true);
+				painelCadastroNavio.setVisible(false);
+				painelInicio.setVisible(false);
+				painelPatio.setVisible(false);
+			}
+		});
+		mnCadastro.add(mntmCadastrar);
+		
+		JMenuItem mntmCadastrarNavio = new JMenuItem("Cadastrar Navio");
+		mntmCadastrarNavio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				painelCadastroCaminhao.setVisible(false);
+				painelCadastroNavio.setVisible(true);
+				painelInicio.setVisible(false);
+				painelPatio.setVisible(false);
+			}
+		});
+		mnCadastro.add(mntmCadastrarNavio);
+		
+		JMenu mnPtio = new JMenu("P\u00E1tio");
+		menuBar.add(mnPtio);
+		
+		JMenuItem mntmVer = new JMenuItem("Ver");
+		mntmVer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				painelCadastroCaminhao.setVisible(false);
+				painelCadastroNavio.setVisible(false);
+				painelInicio.setVisible(false);
+				painelPatio.setVisible(true);
+			}
+		});
+		mnPtio.add(mntmVer);
+	}
+}

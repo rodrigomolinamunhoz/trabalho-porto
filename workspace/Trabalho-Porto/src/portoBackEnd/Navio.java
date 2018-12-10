@@ -1,16 +1,15 @@
 package portoBackEnd;
 
-import java.util.ArrayList;
-
 public class Navio {
 	private int matricula;
 	private Transportadora transportadora;
-	private ArrayList<Container> containers;
+
+	public Navio() {
+	}
 
 	public Navio(int matricula, Transportadora transportadora) {
 		this.matricula = matricula;
 		this.transportadora = transportadora;
-		this.containers = new ArrayList<Container>();
 	}
 
 	public int getMatricula() {
@@ -28,12 +27,4 @@ public class Navio {
 	public void setTransportadora(Transportadora transportadora) {
 		this.transportadora = transportadora;
 	}
-
-	public ArrayList<Container> getContainers() {
-		return containers;
-	}
-
-	public void setContainers(ArrayList<Container> containers) {
-		this.containers = containers;
-	}	
 }

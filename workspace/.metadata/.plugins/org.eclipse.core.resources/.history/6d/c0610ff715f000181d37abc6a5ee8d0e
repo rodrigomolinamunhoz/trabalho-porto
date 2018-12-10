@@ -1,5 +1,0 @@
-package portoBackEnd;
-
-public class Caminhao {
-	private String placa;
-}

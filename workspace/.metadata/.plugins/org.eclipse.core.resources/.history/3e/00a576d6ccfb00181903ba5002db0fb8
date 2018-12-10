@@ -1,0 +1,46 @@
+package portoInterface;
+
+import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class PainelInicio extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public JPanel painelCadastroCaminhao;
+	public JPanel painelCadastroNavio;
+	
+	public PainelInicio() {
+		setBackground(Color.BLUE);
+		setLayout(null);
+		
+		JButton btnCadastrarCaminho = new JButton("Cadastrar Caminh\u00E3o");
+		btnCadastrarCaminho.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				painelCadastroCaminhao.setVisible(true);
+				painelCadastroNavio.setVisible(false);
+			}
+		});
+		btnCadastrarCaminho.setBounds(148, 72, 168, 23);
+		add(btnCadastrarCaminho);
+		
+		JButton btnCadastrarNavio = new JButton("Cadastrar Navio");
+		btnCadastrarNavio.setBounds(148, 106, 168, 23);
+		add(btnCadastrarNavio);
+		
+		JButton btnVisualizarPtio = new JButton("Visualizar P\u00E1tio");
+		btnVisualizarPtio.setBounds(148, 140, 168, 23);
+		add(btnVisualizarPtio);
+		
+		JButton btnSair = new JButton("Sair");
+		btnSair.setBounds(148, 174, 168, 23);
+		add(btnSair);
+
+	}
+}

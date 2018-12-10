@@ -3,14 +3,14 @@ package portoBackEnd;
 import java.util.Date;
 
 public class Container {
-	private int codigo;
+	private String codigo;
 	private Transportadora remetente;
 	private Destinatario destinatario;
 	private String conteudo;
 	private Date dataEntrada;
 	private Date dataSaida;
 	
-	public Container(int codigo, Transportadora remetente, Destinatario destinatario, String conteudo, Date dataEntrada) {
+	public Container(String codigo, Transportadora remetente, Destinatario destinatario, String conteudo, Date dataEntrada) {
 		this.codigo = codigo;
 		this.remetente = remetente;
 		this.destinatario = destinatario;
@@ -18,11 +18,11 @@ public class Container {
 		this.dataEntrada = dataEntrada;
 	}
 	
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 	
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 	

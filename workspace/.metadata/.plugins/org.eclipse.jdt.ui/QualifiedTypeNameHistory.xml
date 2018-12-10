@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="portoBackEnd.Destinatario"/>
     <fullyQualifiedTypeName name="java.util.Stack"/>
     <fullyQualifiedTypeName name="java.util.Queue"/>
-    <fullyQualifiedTypeName name="portoBackEnd.Container"/>
     <fullyQualifiedTypeName name="java.util.LinkedList"/>
-    <fullyQualifiedTypeName name="portoBackEnd.OrigemRemetente"/>
     <fullyQualifiedTypeName name="portoInterface.PainelInicio"/>
+    <fullyQualifiedTypeName name="java.lang.Float"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="portoInterface.PainelCadastroContainer"/>
+    <fullyQualifiedTypeName name="portoBackEnd.Container"/>
+    <fullyQualifiedTypeName name="javax.transaction.TransactionRequiredException"/>
+    <fullyQualifiedTypeName name="portoBackEnd.Transportadora"/>
+    <fullyQualifiedTypeName name="portoBackEnd.Destinatario"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="portoBackEnd.Patio"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="portoBackEnd.Caminhao"/>
+    <fullyQualifiedTypeName name="portoBackEnd.Navio"/>
+    <fullyQualifiedTypeName name="portoBackEnd.OrigemRemetente"/>
 </qualifiedTypeNameHistroy>

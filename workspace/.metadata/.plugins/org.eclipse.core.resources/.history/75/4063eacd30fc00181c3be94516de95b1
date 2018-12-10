@@ -1,0 +1,217 @@
+package portoInterface;
+
+import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JTextField;
+
+import portoBackEnd.Caminhao;
+import portoBackEnd.Container;
+import portoBackEnd.Destinatario;
+import portoBackEnd.Navio;
+import portoBackEnd.OrigemRemetente;
+import portoBackEnd.Transportadora;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.Date;
+import java.awt.event.ActionEvent;
+
+public class PainelCadastroContainer extends JPanel {
+	private JTextField textCodigo;
+	private JTextField textRemetente;
+	private JTextField textDestinatario;
+	private JTextField textConteudo;
+	private JLabel lblValorPlaca;
+	private JLabel lblValorMatricula;
+	private Caminhao caminhao;
+	private Navio navio;
+	private OrigemRemetente origemRemetente;
+
+	public Caminhao getCaminhao() {
+		return caminhao;
+	}
+
+	public void setCaminhao(Caminhao caminhao) {
+		if (this.caminhao == null) {
+			this.caminhao = new Caminhao();
+		}
+		this.caminhao = caminhao;
+	}
+
+	public Navio getNavio() {
+		return navio;
+	}
+
+	public void setNavio(Navio navio) {
+		if (this.navio == null) {
+			this.navio = new Navio();
+		}
+		this.navio = navio;
+	}
+
+	public OrigemRemetente getOrigemRemetente() {
+		return origemRemetente;
+	}
+
+	public void setOrigemRemetente(OrigemRemetente origemRemetente) {
+		this.origemRemetente = origemRemetente;
+	}
+
+	/**
+	 * Create the panel.
+	 */
+	@SuppressWarnings("deprecation")
+	public PainelCadastroContainer(PainelPorto porto) {
+		setBackground(Color.MAGENTA);
+		setLayout(null);
+		setSize(1200, 1800);
+
+		JLabel lblCadastroDeContainer = new JLabel("Cadastro de Container");
+		lblCadastroDeContainer.setFont(new Font("Tahoma", Font.PLAIN, 33));
+		lblCadastroDeContainer.setBounds(442, 66, 356, 37);
+		add(lblCadastroDeContainer);
+
+		JLabel lblCdigo = new JLabel("C\u00F3digo:");
+		lblCdigo.setBounds(494, 127, 101, 14);
+		add(lblCdigo);
+
+		JLabel lblRemetente = new JLabel("Remetente:");
+		lblRemetente.setBounds(494, 155, 101, 14);
+		add(lblRemetente);
+
+		JLabel lblDestinatrio = new JLabel("Destinat\u00E1rio:");
+		lblDestinatrio.setBounds(494, 183, 101, 14);
+		add(lblDestinatrio);
+
+		JLabel lblContedo = new JLabel("Conte\u00FAdo:");
+		lblContedo.setBounds(494, 211, 101, 14);
+		add(lblContedo);
+
+		textCodigo = new JTextField();
+		textCodigo.setBounds(595, 124, 141, 20);
+		add(textCodigo);
+		textCodigo.setColumns(10);
+
+		textRemetente = new JTextField();
+		textRemetente.setColumns(10);
+		textRemetente.setBounds(595, 152, 141, 20);
+		add(textRemetente);
+		textRemetente.disable();
+
+		textDestinatario = new JTextField();
+		textDestinatario.setColumns(10);
+		textDestinatario.setBounds(595, 180, 141, 20);
+		add(textDestinatario);
+
+		textConteudo = new JTextField();
+		textConteudo.setColumns(10);
+		textConteudo.setBounds(595, 208, 141, 20);
+		add(textConteudo);
+
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if (isNullOrEmpty(textCodigo.getText()) || isNullOrEmpty(textRemetente.getText())
+							|| isNullOrEmpty(textDestinatario.getText()) || isNullOrEmpty(textConteudo.getText())) {
+						JOptionPane.showMessageDialog(null, "Algum campo do formulário não foi informado!");
+					} else {
+						Transportadora transportadora = new Transportadora(textRemetente.getText());
+						Destinatario destinatario = new Destinatario(textCodigo.getText(), textDestinatario.getText());
+						Container container = new Container(textCodigo.getText(), transportadora, destinatario,
+								textConteudo.getText(), new Date());
+
+						porto.patio.getContainers().add(container);
+
+						if (origemRemetente == OrigemRemetente.Caminhao) {
+							porto.patio.getCaminhoes().remove();
+							porto.painelPatio.listarCaminhoes(porto.patio.getCaminhoes());
+							porto.painelCadastroCaminhao.listarCaminhoes(porto.patio.getCaminhoes());
+						} else {
+							porto.patio.getNavios().remove();
+							porto.painelPatio.listarNavios(porto.patio.getNavios());
+							porto.painelCadastroNavio.listarNavios(porto.patio.getNavios());
+						}
+
+						porto.painelPatio.listarContainers(porto.patio.getContainers());
+						setVisible(false);
+						porto.painelPatio.setVisible(true);
+						limparFormulario();
+					}
+				} catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(null, "Algo de errado aconteceu, tente novamente!", "Erro",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		btnSalvar.setBounds(647, 239, 89, 23);
+		add(btnSalvar);
+
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				porto.painelPatio.setVisible(true);
+				porto.painelPatio.listarContainers(porto.patio.getContainers());
+				limparFormulario();
+			}
+		});
+		btnVoltar.setBounds(548, 239, 89, 23);
+		add(btnVoltar);
+
+		// if (origemRemetente == OrigemRemetente.Caminhao) {
+		JLabel lblInformaesDoCaminho = new JLabel("Informa\u00E7\u00F5es do Caminh\u00E3o:");
+		lblInformaesDoCaminho.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblInformaesDoCaminho.setBounds(92, 72, 266, 32);
+		add(lblInformaesDoCaminho);
+
+		JLabel lblPlaca = new JLabel("Placa:");
+		lblPlaca.setBounds(102, 115, 76, 26);
+		add(lblPlaca);
+
+		lblValorPlaca = new JLabel();
+		lblValorPlaca.setBounds(184, 115, 174, 26);
+		add(lblValorPlaca);
+		// }
+
+		// if (origemRemetente == OrigemRemetente.Navio) {
+		JLabel lblInformaesDoNavio = new JLabel("Informa\u00E7\u00F5es do Navio:");
+		lblInformaesDoNavio.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblInformaesDoNavio.setBounds(92, 183, 266, 32);
+		add(lblInformaesDoNavio);
+
+		JLabel lblMatricula = new JLabel("Matr\u00EDcula:");
+		lblMatricula.setBounds(107, 226, 81, 36);
+		add(lblMatricula);
+
+		lblValorMatricula = new JLabel();
+		lblValorMatricula.setBounds(211, 226, 200, 36);
+		add(lblValorMatricula);
+		// }
+	}
+
+	private boolean isNullOrEmpty(String s) {
+		return s == null || s.isEmpty();
+	}
+
+	public void atualizaInformacaoCaminhao() {
+		textRemetente.setText(caminhao.getTransportadora().getRazaoSocial());
+		lblValorPlaca.setText(caminhao.getPlaca());
+	}
+
+	public void atualizaInformacaoNavio() {
+		textRemetente.setText(navio.getTransportadora().getRazaoSocial());
+		lblValorMatricula.setText(String.valueOf(navio.getMatricula()));
+	}
+
+	private void limparFormulario() {
+		textCodigo.setText("");
+		textRemetente.setText("");
+		textDestinatario.setText("");
+		textConteudo.setText("");
+	}
+}

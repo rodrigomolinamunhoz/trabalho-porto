@@ -1,0 +1,155 @@
+package portoInterface;
+
+import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
+
+import portoBackEnd.Caminhao;
+import portoBackEnd.Container;
+import portoBackEnd.Navio;
+import portoBackEnd.OrigemRemetente;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Queue;
+import java.util.Stack;
+import java.awt.event.ActionEvent;
+
+public class PainelPatio extends JPanel {
+	private JTable tableCaminhoes;
+	private JTable tableNavios;
+	private JTable tableContainers;
+
+	/**
+	 * Create the panel.
+	 */
+	public PainelPatio(PainelPorto porto) {
+		setBackground(Color.CYAN);
+		setLayout(null);
+		setSize(1200, 1800);
+
+		JLabel lblNewLabel = new JLabel("Lista de Caminh\u00F5es no P\u00E1tio:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel.setBounds(10, 11, 334, 81);
+		add(lblNewLabel);
+
+		JScrollPane scrollPaneCaminhoes = new JScrollPane();
+		scrollPaneCaminhoes.setBounds(10, 87, 326, 214);
+		add(scrollPaneCaminhoes);
+
+		tableCaminhoes = new JTable();
+		tableCaminhoes.setModel(
+				new DefaultTableModel(new Object[][] {}, new String[] { "Ordem", "Placa", "Transportadora" }));
+		scrollPaneCaminhoes.setViewportView(tableCaminhoes);
+
+		JButton btnCarregarCaminho = new JButton("Carregar Caminh\u00E3o");
+		btnCarregarCaminho.setBounds(50, 312, 201, 67);
+		add(btnCarregarCaminho);
+
+		JButton btnCarregar = new JButton("Descarregar Caminh\u00E3o");
+		btnCarregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				porto.painelCadastroContainer.setVisible(true);
+
+				Caminhao caminhao = porto.patio.getCaminhoes().peek();
+				porto.painelCadastroContainer.setCaminhao(caminhao);
+				porto.painelCadastroContainer.setOrigemRemetente(OrigemRemetente.Caminhao);
+
+			}
+		});
+		btnCarregar.setBounds(50, 390, 201, 67);
+		add(btnCarregar);
+
+		JLabel lblListaDeNavios = new JLabel("Lista de Navios no P\u00E1tio:");
+		lblListaDeNavios.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblListaDeNavios.setBounds(876, 11, 287, 81);
+		add(lblListaDeNavios);
+
+		JScrollPane scrollPaneNavios = new JScrollPane();
+		scrollPaneNavios.setBounds(864, 87, 326, 214);
+		add(scrollPaneNavios);
+
+		tableNavios = new JTable();
+		tableNavios.setModel(
+				new DefaultTableModel(new Object[][] {}, new String[] { "Ordem", "Matrícula", "Transportadora" }) {
+					public boolean isCellEditable(int rowIndex, int mColIndex) {
+						return false;
+					}
+				});
+		scrollPaneNavios.setViewportView(tableNavios);
+
+		JButton bnCarregaNavio = new JButton("Carregar Navio");
+		bnCarregaNavio.setBounds(966, 312, 197, 67);
+		add(bnCarregaNavio);
+
+		JButton btnDescarregaNavio = new JButton("Descarregar Navio");
+		btnDescarregaNavio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				porto.painelCadastroContainer.setVisible(true);
+			}
+		});
+		btnDescarregaNavio.setBounds(966, 390, 197, 67);
+		add(btnDescarregaNavio);
+
+		JLabel lblListaDeContainers = new JLabel("Lista de Containers no P\u00E1tio:");
+		lblListaDeContainers.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblListaDeContainers.setBounds(431, 220, 334, 81);
+		add(lblListaDeContainers);
+
+		JScrollPane scrollPaneContainers = new JScrollPane();
+		scrollPaneContainers.setBounds(261, 312, 695, 214);
+		add(scrollPaneContainers);
+
+		tableContainers = new JTable();
+		tableContainers.setModel(new DefaultTableModel(new Object[][] {},
+				new String[] { "Ordem", "Código", "Remetente", "Destinatário", "Conteúdo", "Data de Entrada" }) {
+			public boolean isCellEditable(int rowIndex, int mColIndex) {
+				return false;
+			}
+		});
+		scrollPaneContainers.setViewportView(tableContainers);
+	}
+
+	public void listarContainers(Stack<Container> containers) {
+		DefaultTableModel dt = (DefaultTableModel) tableContainers.getModel();
+		clearTable(dt);
+		int contador = 1;
+		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyy");
+		for (Container container : containers) {
+			dt.addRow(new String[] { String.valueOf(contador++), container.getCodigo(),
+					container.getRemetente().getRazaoSocial(), container.getDestinatario().getCodigo(),
+					container.getConteudo(), format.format(container.getDataEntrada()) });
+		}
+	}
+
+	public void listarNavios(Queue<Navio> navios) {
+		DefaultTableModel dt = (DefaultTableModel) tableNavios.getModel();
+		clearTable(dt);
+		int contador = 1;
+		for (Navio navio : navios) {
+			dt.addRow(new String[] { String.valueOf(contador++), String.valueOf(navio.getMatricula()),
+					navio.getTransportadora().getRazaoSocial() });
+		}
+	}
+
+	public void listarCaminhoes(Queue<Caminhao> caminhoes) {
+		DefaultTableModel dt = (DefaultTableModel) tableCaminhoes.getModel();
+		clearTable(dt);
+		int contador = 1;
+		for (Caminhao caminhao : caminhoes) {
+			dt.addRow(new String[] { String.valueOf(contador++), caminhao.getPlaca(),
+					caminhao.getTransportadora().getRazaoSocial() });
+		}
+	}
+
+	private void clearTable(DefaultTableModel dt) {
+		dt.setRowCount(0);
+	}
+}

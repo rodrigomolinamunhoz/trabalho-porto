@@ -1,0 +1,177 @@
+package portoInterface;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.CardLayout;
+
+public class PortoFrame extends JFrame {
+
+	private static PortoFrame frame;
+	private JPanel contentPane;
+	private JPanel painelInicio;
+	private JPanel painelCadastroCaminhao;
+	private JPanel painelCadastroNavio;
+	private JPanel painelPatio;	
+
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	public void setContentPane(JPanel contentPane) {
+		this.contentPane = contentPane;
+	}
+
+	public JPanel getPainelInicio() {
+		return painelInicio;
+	}
+
+	public void setPainelInicio(JPanel painelInicio) {
+		this.painelInicio = painelInicio;
+	}
+
+	public JPanel getPainelCadastroCaminhao() {
+		return painelCadastroCaminhao;
+	}
+
+	public void setPainelCadastroCaminhao(JPanel painelCadastroCaminhao) {
+		this.painelCadastroCaminhao = painelCadastroCaminhao;
+	}
+
+	public JPanel getPainelCadastroNavio() {
+		return painelCadastroNavio;
+	}
+
+	public void setPainelCadastroNavio(JPanel painelCadastroNavio) {
+		this.painelCadastroNavio = painelCadastroNavio;
+	}
+
+	public JPanel getPainelPatio() {
+		return painelPatio;
+	}
+
+	public void setPainelPatio(JPanel painelPatio) {
+		this.painelPatio = painelPatio;
+	}
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame = new PortoFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public PortoFrame() {
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setBounds(100, 100, 450, 300);
+		//contentPane = new JPanel();
+		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		//contentPane.setLayout(new BorderLayout(0, 0));
+		//setContentPane(contentPane);
+		
+		this.painelInicio = new PainelInicio();
+		this.painelCadastroCaminhao = new PainelCadastroCaminhao();
+		this.painelCadastroNavio = new PainelCadastroNavio();
+		this.painelPatio = new PainelPatio();
+		frame.getContentPane().setLayout(new CardLayout(0, 0));
+		
+		initialize();
+	}
+	
+	private void initialize() {
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		
+		JPanel painelPorto = new JPanel();
+		frame.getContentPane().add(painelPorto);
+		painelPorto.setLayout(new CardLayout(0, 0));
+		
+
+		painelPorto.add(getPainelInicio(), "name_156304225049472");
+		
+		painelPorto.add(getPainelCadastroCaminhao(), "name_156701038958973");
+		getPainelCadastroCaminhao().setLayout(null);
+		
+		painelPorto.add(getPainelCadastroNavio(), "name_156822636675350");
+		
+		painelPorto.add(getPainelPatio(), "name_163498134734542");
+
+		
+		JMenuBar menuBar = new JMenuBar();
+		getContentPane().add(menuBar, BorderLayout.NORTH);
+		
+		JMenu mnIncio = new JMenu("In\u00EDcio");
+		menuBar.add(mnIncio);
+		
+		JMenuItem mntmIr = new JMenuItem("Ver");
+		mntmIr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getPainelPatio().setVisible(false);
+				getPainelCadastroNavio().setVisible(false);
+				getPainelInicio().setVisible(true);
+				getPainelPatio().setVisible(false);
+			}
+		});
+		mnIncio.add(mntmIr);
+		
+		JMenu mnCadastro = new JMenu("Cadastro");
+		menuBar.add(mnCadastro);
+		
+		JMenuItem mntmCadastrar = new JMenuItem("Cadastrar Caminh\u00E3o");
+		mntmCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getPainelCadastroCaminhao().setVisible(true);
+				getPainelCadastroNavio().setVisible(false);
+				getPainelInicio().setVisible(false);
+				getPainelPatio().setVisible(false);
+			}
+		});
+		mnCadastro.add(mntmCadastrar);
+		
+		JMenuItem mntmCadastrarNavio = new JMenuItem("Cadastrar Navio");
+		mntmCadastrarNavio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getPainelCadastroCaminhao().setVisible(false);
+				getPainelCadastroNavio().setVisible(true);
+				getPainelInicio().setVisible(false);
+				getPainelPatio().setVisible(false);
+			}
+		});
+		mnCadastro.add(mntmCadastrarNavio);
+		
+		JMenu mnPtio = new JMenu("P\u00E1tio");
+		menuBar.add(mnPtio);
+		
+		JMenuItem mntmVer = new JMenuItem("Ver");
+		mntmVer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getPainelCadastroCaminhao().setVisible(false);
+				getPainelCadastroNavio().setVisible(false);
+				getPainelInicio().setVisible(false);
+				getPainelPatio().setVisible(true);
+			}
+		});
+		mnPtio.add(mntmVer);
+	}
+}

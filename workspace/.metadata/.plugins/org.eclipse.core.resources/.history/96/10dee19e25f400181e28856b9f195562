@@ -1,5 +1,0 @@
-package portoBackEnd;
-
-public enum OrigemRemetente {
-
-}

@@ -1,7 +1,0 @@
-package portoBackEnd;
-
-import java.util.ArrayList;
-
-public class Patio {
-	private ArrayList<Container> containers;
-}

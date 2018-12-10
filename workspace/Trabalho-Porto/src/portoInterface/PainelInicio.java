@@ -2,24 +2,23 @@ package portoInterface;
 
 import javax.swing.JPanel;
 import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.border.BevelBorder;
 
 public class PainelInicio extends JPanel {
-
-	/**
-	 * Create the panel.
-	 */
+	
 	public PainelInicio() {
 		setBackground(Color.BLUE);
 		setLayout(null);
+		setSize(1200, 1800);
 		
 		JLabel lblBemvindo = new JLabel("Bem-Vindo");
-		lblBemvindo.setFont(new Font("Tahoma", Font.PLAIN, 90));
-		lblBemvindo.setForeground(Color.BLACK);
-		lblBemvindo.setBounds(0, 87, 450, 95);
+		lblBemvindo.setBounds(481, 268, 303, 107);
+		lblBemvindo.setFont(new Font("Tahoma", Font.PLAIN, 61));
 		add(lblBemvindo);
-
 	}
-
 }

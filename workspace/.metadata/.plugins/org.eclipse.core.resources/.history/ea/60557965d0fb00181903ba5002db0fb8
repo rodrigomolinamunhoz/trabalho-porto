@@ -1,0 +1,31 @@
+package portoInterface;
+
+import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class PainelInicio extends JPanel {
+	
+	public PainelInicio() {
+		setBackground(Color.BLUE);
+		setLayout(null);
+		
+		JButton btnCadastrarCaminho = new JButton("Cadastrar Caminh\u00E3o");
+		btnCadastrarCaminho.setBounds(139, 79, 168, 23);
+		add(btnCadastrarCaminho);
+		
+		JButton btnCadastrarNavio = new JButton("Cadastrar Navio");
+		btnCadastrarNavio.setBounds(139, 113, 168, 23);
+		add(btnCadastrarNavio);
+		
+		JButton btnVisualizarPtio = new JButton("Visualizar P\u00E1tio");
+		btnVisualizarPtio.setBounds(139, 147, 168, 23);
+		add(btnVisualizarPtio);
+		
+		JButton btnSair = new JButton("Sair");
+		btnSair.setBounds(139, 181, 168, 23);
+		add(btnSair);
+	}
+}

@@ -1,41 +1,26 @@
 package portoBackEnd;
 
 public class Destinatario {
-	private OrigemRemetente origemRemetente;
-	private String placa;
-	private int matricula;
+	private String codigo;
+	private String destino;
+		
+	public Destinatario(String codigo, String destino) {
+		this.codigo = codigo;
+		this.destino = destino;
+	}
 	
-	public Destinatario(String placa) {
-		this.origemRemetente = OrigemRemetente.Navio;
-		this.placa = placa;
+	public String getDestino() {
+		return destino;
 	}
 
-	public Destinatario(int matricula) {
-		this.origemRemetente = OrigemRemetente.Caminhao;
-		this.matricula = matricula;
+	public void setDestino(String destino) {
+		this.destino = destino;
 	}
 
-	public OrigemRemetente getOrigemRemetente() {
-		return origemRemetente;
+	public String getCodigo() {
+		return codigo;
 	}
-
-	public void setOrigemRemetente(OrigemRemetente origemRemetente) {
-		this.origemRemetente = origemRemetente;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
-
-	public String getPlaca() {
-		return placa;
-	}
-
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
-
-	public int getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(int matricula) {
-		this.matricula = matricula;
-	}	
 }
